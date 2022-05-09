@@ -21,9 +21,8 @@ export class SubmitFeedbackUseCase {
             throw new Error('Invalid image');
         }
 
-        if (type){
+        if (!type) {
             throw new Error('Invalid type');
-            
         }
 
         await this.feedbacksRepository.create({
@@ -39,6 +38,7 @@ export class SubmitFeedbackUseCase {
                 `<div>`,
                 `<p>Tipo do feedback: ${type}</p>`,
                 `<p>Comentário: ${comment}`,
+                screenshot ? `<img src="${screenshot}" />` : ``,
                 `</div>`
             ].join('\n')
         })
